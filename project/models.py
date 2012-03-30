@@ -1,8 +1,27 @@
 from django.db import models
 #from django.db.models import signals
 #from django.contrib.auth.models import User
-from django.utils.translation import ugettext_lazy as _
-#from project.models import Company
+
+
+class Customer(models.Model):
+    name = models.CharField('name', max_length=128)
+
+    class Meta:
+        verbose_name_plural = "Customers"
+
+    def __unicode__(self):
+        return self.name
+
+
+class Project(models.Model):
+    name = models.CharField('name', max_length=128)
+    customer = models.ForeignKey(Customer, verbose_name="customer")
+
+    class Meta:
+        verbose_name_plural = "Projects"
+
+    def __unicode__(self):
+        return self.name
 
 
 # class UserProfile(models.Model):

@@ -2,7 +2,18 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 #from project.models import UserProfile
-from django.utils.translation import ugettext_lazy as _
+from project.models import Customer
+from project.models import Project
+
+
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+
+
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ('name', 'customer', )
+    list_filter = ('customer', )
+    search_fields = ('name', 'customer__name', )
 
 
 # class UserProfileAdminInline(admin.StackedInline):
@@ -59,3 +70,6 @@ from django.utils.translation import ugettext_lazy as _
 
 # admin.site.unregister(User)
 # admin.site.register(User, UserAdminEx)
+
+admin.site.register(Customer, CustomerAdmin)
+admin.site.register(Project, ProjectAdmin)
