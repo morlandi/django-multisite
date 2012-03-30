@@ -11,6 +11,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
 
 class ProjectAdmin(admin.ModelAdmin):
+    #import pdb; pdb.set_trace() ## PDB_DEBUG ##
     list_display = ('name', 'customer', )
     list_filter = ('customer', )
     search_fields = ('name', 'customer__name', )

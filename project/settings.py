@@ -40,7 +40,9 @@ LANGUAGES = (
     #('en', ugettext('English')),
     ('it', ugettext('Italian')),
 )
-SITE_ID = 1
+#SITE_ID = 1
+from multisite.threadlocals import SiteIDHook
+SITE_ID = SiteIDHook()
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -107,6 +109,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    #'multisite.middleware.DynamicSiteMiddleware',
 )
 
 ROOT_URLCONF = 'project.urls'
@@ -116,6 +119,21 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(os.path.dirname(__file__), "templates"),
+)
+
+
+# Current site context processor:
+# def current_site(request):
+#     return (settings.SITE_ID) and {'site': Site.objects.get_current()} or None
+
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    'django.contrib.messages.context_processors.messages',
+    "django.core.context_processors.request",
 )
 
 INSTALLED_APPS = (
