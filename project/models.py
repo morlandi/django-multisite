@@ -2,7 +2,7 @@ from django.db import models
 #from django.db.models import signals
 #from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from project.models import Company
+#from project.models import Company
 
 
 # class UserProfile(models.Model):

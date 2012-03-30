@@ -10,7 +10,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^$', redirect_to, {'url': '/admin/'}),
     (r'^admin/', include(admin.site.urls)),
-    (r'', include('invoicer.urls', namespace='invoicer', app_name='invoicer')),
+    #(r'', include('invoicer.urls', namespace='invoicer', app_name='invoicer')),
 )
 
 if settings.DEVELOPMENT or settings.DEBUG:
